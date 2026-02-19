@@ -1,33 +1,33 @@
 :root {
-  --bg: #0f172a;
+  --bg: #0d1427;
   --card: #020617;
-  --card-bg: linear-gradient(180deg, #172554, #0f172acc); /* Darker blue tint */
-  --card-border: rgba(59, 130, 246, 0.1);
-  --card-border-hover: rgba(59, 130, 246, 0.3);
-  --accent: #3b82f6; /* Blue 500 */
-  --accent-transparent: rgba(59, 130, 246, 0.15);
-  --avatar-shadow: rgba(59, 130, 246, 0.4);
-  --avatar-shadow-hover: rgba(59, 130, 246, 0.6);
+  --card-bg: linear-gradient(180deg, #1e293b, #0d1427cc); /* Adjusted gradient base to match new bg */
+  --card-border: rgba(56, 189, 248, 0.1);
+  --card-border-hover: rgba(56, 189, 248, 0.3);
+  --accent: #38bdf8; /* Sky 400 */
+  --accent-transparent: rgba(56, 189, 248, 0.15);
+  --avatar-shadow: rgba(56, 189, 248, 0.4);
+  --avatar-shadow-hover: rgba(56, 189, 248, 0.6);
   --text: #e5e7eb;
   --muted: #94a3b8;
-  --bg-gradient: radial-gradient(circle at top, #172554, #020617);
-  --nav-bg: rgba(15, 23, 42, 0.8);
+  --bg-gradient: radial-gradient(circle at top, #1e293b, #020617); /* Adjusted for new bg */
+  --nav-bg: rgba(13, 20, 39, 0.8);
 }
 
 [data-theme="light"] {
-  --bg: #f8fafc;
+  --bg: #e7ecf3;
   --card: #ffffff;
-  --card-bg: linear-gradient(180deg, #ffffff, #dbeafe); /* Light blue tint */
-  --card-border: rgba(37, 99, 235, 0.1);
-  --card-border-hover: rgba(37, 99, 235, 0.3);
-  --accent: #2563eb; /* Blue 600 */
-  --accent-transparent: rgba(37, 99, 235, 0.15);
-  --avatar-shadow: rgba(37, 99, 235, 0.4);
-  --avatar-shadow-hover: rgba(37, 99, 235, 0.6);
+  --card-bg: linear-gradient(180deg, #ffffff, #e0f2fe); /* Light sky tint */
+  --card-border: rgba(2, 132, 199, 0.1);
+  --card-border-hover: rgba(2, 132, 199, 0.3);
+  --accent: #0284c7; /* Sky 600 */
+  --accent-transparent: rgba(2, 132, 199, 0.15);
+  --avatar-shadow: rgba(2, 132, 199, 0.4);
+  --avatar-shadow-hover: rgba(2, 132, 199, 0.6);
   --text: #0f172a;
   --muted: #475569;
-  --bg-gradient: radial-gradient(circle at top, #dbeafe, #f8fafc);
-  --nav-bg: rgba(248, 250, 252, 0.8);
+  --bg-gradient: radial-gradient(circle at top, #e0f2fe, #e7ecf3);
+  --nav-bg: rgba(231, 236, 243, 0.8);
 }
 
 * {
@@ -157,7 +157,7 @@ body {
   margin: auto;
   border-radius: 50%;
   padding: 5px;
-  background: linear-gradient(135deg, var(--accent), #60a5fa); /* Blue gradient */
+  background: linear-gradient(135deg, var(--accent), #7dd3fc); /* Adjusted gradient to light sky */
   box-shadow: 0 0 40px var(--avatar-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -276,7 +276,7 @@ ul {
 }
 
 .contact a:hover {
-  color: #60a5fa;
+  color: #7dd3fc;
   text-decoration: underline;
 }
 
