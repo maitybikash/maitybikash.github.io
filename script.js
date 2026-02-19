@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTilt();
   initTheme();
   initMobileMenu();
+  initYear();
 });
 
 /* -----------------------------------------------------------
@@ -307,4 +308,14 @@ function initMobileMenu() {
       menuToggle.classList.remove('active');
     }
   });
+}
+
+/* -----------------------------------------------------------
+   DYNAMIC YEAR
+----------------------------------------------------------- */
+function initYear() {
+  const yearSpan = document.getElementById('current-year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 }
