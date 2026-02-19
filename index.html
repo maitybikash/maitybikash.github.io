@@ -48,8 +48,11 @@
     <!-- CONTENT -->
     <section class="grid">
 
-      <div id="about" class="card fade-in">
-        <h2>About Me</h2>
+      <div id="about" class="card bento-card fade-in col-span-2">
+        <div class="card-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <h2>About Me</h2>
+        </div>
         <p>
           I build reliable automation tools with a strong focus on Telegram bots,
           backend scripting, and clean deployments. I value simplicity, stability,
@@ -57,36 +60,67 @@
         </p>
       </div>
 
-      <div id="skills" class="card fade-in">
-        <h2>Skills</h2>
-        <p>
-          Python, Pyrogram, Telethon, Docker, Linux, Git, VPS Deployment
-        </p>
+      <div id="skills" class="card bento-card fade-in">
+        <div class="card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            <h2>Skills</h2>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pyrogram</span>
+          <span class="skill-tag">Telethon</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">VPS Deployment</span>
+        </div>
       </div>
 
-      <div id="projects" class="card fade-in">
-        <h2>Projects</h2>
-        <ul>
-          <li>Telegram Automation & Moderation Bots</li>
-          <li>Media & Utility Tools</li>
-          <li>Docker-based Production Setups</li>
-        </ul>
+      <div id="projects" class="card bento-card fade-in col-span-2">
+        <div class="card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <h2>Projects</h2>
+        </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                </div>
+                <h3>Telegram Bots</h3>
+                <p>Advanced automation & moderation tools for communities.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3>Media Tools</h3>
+                <p>High-performance media processing and utility scripts.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <h3>DevOps</h3>
+                <p>Dockerized production setups & VPS management.</p>
+            </div>
+        </div>
       </div>
 
-      <div id="contact" class="card contact fade-in">
-        <h2>Contact</h2>
-        <p>
-          GitHub:<br>
-          <a href="https://github.com/maitybikash" target="_blank">
-            github.com/maitybikash
-          </a>
-        </p>
-        <p>
-          Telegram:<br>
-          <a href="https://t.me/DARKL0RD_TG" target="_blank">
-            @DARKL0RD_TG
-          </a>
-        </p>
+      <div id="contact" class="card bento-card contact fade-in">
+        <div class="card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <h2>Contact</h2>
+        </div>
+        <div class="contact-links">
+            <a href="https://github.com/maitybikash" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>github.com/maitybikash</span>
+            </a>
+            <a href="https://t.me/DARKL0RD_TG" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <span>@DARKL0RD_TG</span>
+            </a>
+        </div>
       </div>
 
     </section>
