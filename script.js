@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTyping();
   initScrollAnimations();
   initTilt();
+  initTheme();
 });
 
 /* -----------------------------------------------------------
@@ -232,5 +233,41 @@ function initTilt() {
         card.style.transform = '';
       }, 500);
     });
+  });
+}
+
+/* -----------------------------------------------------------
+   THEME TOGGLE
+----------------------------------------------------------- */
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+
+  if (!toggleBtn || !sunIcon || !moonIcon) return;
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+    }
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const newTheme = isLight ? 'dark' : 'light';
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
   });
 }
