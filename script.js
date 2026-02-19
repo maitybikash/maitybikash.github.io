@@ -198,7 +198,7 @@ function initScrollAnimations() {
 }
 
 /* -----------------------------------------------------------
-   3D TILT EFFECT
+   3D TILT EFFECT & GLOW
 ----------------------------------------------------------- */
 function initTilt() {
   const cards = document.querySelectorAll('.card');
@@ -209,11 +209,16 @@ function initTilt() {
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
+      // Set CSS variables for glow effect
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10deg
-      const rotateY = ((x - centerX) / centerX) * 10;
+      // Reduced rotation intensity for better UX with glassmorphism
+      const rotateX = ((y - centerY) / centerY) * -4;
+      const rotateY = ((x - centerX) / centerX) * 4;
 
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
