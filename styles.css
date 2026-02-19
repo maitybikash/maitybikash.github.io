@@ -1,35 +1,41 @@
 :root {
-  --bg: #0b1120;
+  --bg: #0f172a;
   --card: #020617;
-  --card-bg: linear-gradient(180deg, #020617, #020617cc);
-  --card-border: rgba(56,189,248,0.1);
-  --card-border-hover: rgba(56,189,248,0.3);
-  --accent: #38bdf8;
-  --accent-transparent: rgba(56,189,248,.15);
-  --avatar-shadow: rgba(56,189,248,.4);
-  --avatar-shadow-hover: rgba(56,189,248,.6);
+  --card-bg: linear-gradient(180deg, #1e1b4b, #0f172acc); /* Darker violet tint */
+  --card-border: rgba(139, 92, 246, 0.1);
+  --card-border-hover: rgba(139, 92, 246, 0.3);
+  --accent: #8b5cf6; /* Violet 500 */
+  --accent-transparent: rgba(139, 92, 246, 0.15);
+  --avatar-shadow: rgba(139, 92, 246, 0.4);
+  --avatar-shadow-hover: rgba(139, 92, 246, 0.6);
   --text: #e5e7eb;
   --muted: #94a3b8;
-  --bg-gradient: radial-gradient(circle at top, #0f172a, #020617);
+  --bg-gradient: radial-gradient(circle at top, #1e1b4b, #020617);
+  --nav-bg: rgba(15, 23, 42, 0.8);
 }
 
 [data-theme="light"] {
   --bg: #f8fafc;
   --card: #ffffff;
-  --card-bg: linear-gradient(180deg, #ffffff, #f1f5f9);
-  --card-border: rgba(2, 132, 199, 0.1);
-  --card-border-hover: rgba(2, 132, 199, 0.3);
-  --accent: #0284c7;
-  --accent-transparent: rgba(2, 132, 199, .15);
-  --avatar-shadow: rgba(2, 132, 199, .4);
-  --avatar-shadow-hover: rgba(2, 132, 199, .6);
+  --card-bg: linear-gradient(180deg, #ffffff, #f3e8ff); /* Light violet tint */
+  --card-border: rgba(124, 58, 237, 0.1);
+  --card-border-hover: rgba(124, 58, 237, 0.3);
+  --accent: #7c3aed; /* Violet 600 */
+  --accent-transparent: rgba(124, 58, 237, 0.15);
+  --avatar-shadow: rgba(124, 58, 237, 0.4);
+  --avatar-shadow-hover: rgba(124, 58, 237, 0.6);
   --text: #0f172a;
   --muted: #475569;
-  --bg-gradient: radial-gradient(circle at top, #e2e8f0, #f8fafc);
+  --bg-gradient: radial-gradient(circle at top, #f3e8ff, #f8fafc);
+  --nav-bg: rgba(248, 250, 252, 0.8);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -39,6 +45,73 @@ body {
   color: var(--text);
   overflow-x: hidden;
   transition: background 0.5s ease, color 0.5s ease;
+  padding-top: 60px; /* Space for fixed navbar */
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--card-border);
+  transition: background 0.3s;
+}
+
+.nav-content {
+  max-width: 960px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: var(--accent);
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transition: 0.3s;
 }
 
 #theme-toggle {
@@ -55,18 +128,56 @@ body {
   z-index: 100;
 }
 
-#theme-toggle:hover {
-  background: rgba(56, 189, 248, 0.1);
+/* Position theme toggle in navbar if needed, or keep floating but adjust z-index */
+/* Keeping it floating but moving it down or ensuring it doesn't overlap nav content on mobile */
+/* Actually, let's move theme toggle INTO navbar on mobile? Or just keep it.
+   Currently it is in .container.
+   Let's adjust its top position or move it to fixed.
+*/
+#theme-toggle {
+  position: fixed; /* Fix it so it stays visible */
+  top: 15px;
+  right: 20px;
+  /* Adjusted for navbar height */
+  margin-right: 0;
+}
+/* But on desktop, the navbar has content. Maybe move toggle to navbar?
+   For now, I'll keep it fixed but ensure it doesn't overlap the menu button on mobile.
+   The menu button is on the right of nav-content. The toggle is also on right.
+   I should probably move the theme toggle into the navbar structure in a later step if needed.
+   For now, let's adjust its position.
+
+   If I keep it absolute in container, it scrolls away.
+   If fixed, it might overlap hamburger.
+
+   Let's check index.html again. The button is inside .container.
+   Navbar is outside .container.
+
+   I'll style it to be fixed at bottom right or top right (but watch out for navbar).
+   Actually, usually it's better inside navbar.
+   However, user didn't ask to move it.
+   I will make it fixed bottom-right to avoid cluttering top nav.
+*/
+
+#theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  top: auto; /* Override previous top */
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-border);
+  border: 1px solid var(--card-border);
 }
 
-[data-theme="light"] #theme-toggle:hover {
-  background: rgba(2, 132, 199, 0.1);
+#theme-toggle:hover {
+  background: var(--card-border);
 }
+
 
 .container {
   max-width: 960px;
   margin: auto;
-  padding: 60px 20px;
+  padding: 40px 20px;
   position: relative;
   z-index: 1;
 }
@@ -77,6 +188,7 @@ body {
   margin-bottom: 50px;
   opacity: 0;
   animation: fadeIn 1s ease-out forwards;
+  margin-top: 40px;
 }
 
 .avatar {
@@ -85,7 +197,7 @@ body {
   margin: auto;
   border-radius: 50%;
   padding: 5px;
-  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  background: linear-gradient(135deg, var(--accent), #a78bfa); /* Violet gradient */
   box-shadow: 0 0 40px var(--avatar-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -113,7 +225,7 @@ h1 {
   color: var(--muted);
   font-size: 1rem;
   letter-spacing: .5px;
-  min-height: 1.5em; /* Reserve space for typing effect */
+  min-height: 1.5em;
 }
 
 .cursor {
@@ -143,7 +255,7 @@ h1 {
   padding: 24px;
   position: relative;
   overflow: hidden;
-  opacity: 0; /* Hidden initially for scroll animation */
+  opacity: 0;
   transform: translateY(30px);
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   border: 1px solid var(--card-border);
@@ -204,7 +316,7 @@ ul {
 }
 
 .contact a:hover {
-  color: #60a5fa;
+  color: #a78bfa;
   text-decoration: underline;
 }
 
@@ -214,13 +326,6 @@ footer {
   margin-top: 70px;
   color: var(--muted);
   font-size: .85rem;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
 }
 
 /* ANIMATIONS */
@@ -238,4 +343,55 @@ footer {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: var(--card-bg); /* Use card bg for drawer */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border-left: 1px solid var(--card-border);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    margin: 20px 0;
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+  }
+
+  /* Hamburger Animation */
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
