@@ -498,7 +498,7 @@ footer {
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%;
+    left: -100%;
     width: 75%;
     height: 100vh;
     background: var(--bg);
@@ -506,8 +506,8 @@ footer {
     align-items: center;
     justify-content: center;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-    box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-    border-left: 1px solid var(--card-border);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+    border-right: 1px solid var(--card-border);
     backdrop-filter: none; /* Mobile browsers sometimes struggle */
 
   }
