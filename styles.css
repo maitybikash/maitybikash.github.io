@@ -509,10 +509,11 @@ footer {
     box-shadow: -5px 0 25px rgba(0,0,0,0.2);
     border-left: 1px solid var(--card-border);
     backdrop-filter: none; /* Mobile browsers sometimes struggle */
+
   }
 
   .nav-links.active {
-    right: 0;
+    left: 0;
   }
 
   .nav-links li {
