@@ -256,12 +256,12 @@ function initTheme() {
   function applyTheme(theme) {
     if (theme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
     } else {
       document.documentElement.removeAttribute('data-theme');
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
     }
   }
 
