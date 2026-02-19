@@ -315,7 +315,7 @@ footer {
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%;
+    left: -100%;
     width: 70%;
     height: 100vh;
     background: var(--card-bg); /* Use card bg for drawer */
@@ -323,13 +323,13 @@ footer {
     align-items: center;
     justify-content: center;
     transition: 0.4s ease;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     backdrop-filter: blur(10px);
-    border-left: 1px solid var(--card-border);
+    border-right: 1px solid var(--card-border);
   }
 
   .nav-links.active {
-    right: 0;
+    left: 0;
   }
 
   .nav-links li {
