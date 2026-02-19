@@ -57,7 +57,7 @@ function initParticles() {
       this.vx = (Math.random() - 0.5) * 1.5; // Velocity X
       this.vy = (Math.random() - 0.5) * 1.5; // Velocity Y
       this.size = Math.random() * 2 + 1;
-      this.color = 'rgba(139, 92, 246, '; // Using accent color base (Violet)
+      this.color = 'rgba(59, 130, 246, '; // Using accent color base (Blue)
     }
 
     update() {
@@ -127,7 +127,7 @@ function initParticles() {
 
         if (distance < connectionDistance) {
           let opacityValue = 1 - (distance / connectionDistance);
-          ctx.strokeStyle = 'rgba(139, 92, 246,' + opacityValue * 0.2 + ')';
+          ctx.strokeStyle = 'rgba(59, 130, 246,' + opacityValue * 0.2 + ')';
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);
