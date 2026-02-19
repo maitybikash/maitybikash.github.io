@@ -4,158 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bikash Maity | Portfolio</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #0b1120;
-      --card: #020617;
-      --accent: #38bdf8;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0f172a, #020617);
-      color: var(--text);
-    }
-
-    .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .avatar {
-      width: 170px;
-      height: 170px;
-      margin: auto;
-      border-radius: 50%;
-      padding: 5px;
-      background: linear-gradient(135deg, var(--accent), #60a5fa);
-      box-shadow: 0 0 40px rgba(56,189,248,.4);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      background: var(--card);
-    }
-
-    h1 {
-      margin: 20px 0 5px;
-      font-size: 2.4rem;
-      color: var(--accent);
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 1rem;
-      letter-spacing: .5px;
-    }
-
-    /* CARDS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, #020617, #020617cc);
-      border-radius: 16px;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(56,189,248,.15), transparent);
-      opacity: 0;
-      transition: .4s;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: var(--accent);
-      font-size: 1.3rem;
-    }
-
-    p, li {
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    ul {
-      padding-left: 18px;
-    }
-
-    /* CONTACT */
-    .contact a {
-      display: inline-block;
-      margin-top: 10px;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      margin-top: 70px;
-      color: var(--muted);
-      font-size: .85rem;
-    }
-
-    /* MOBILE */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <canvas id="particles-canvas"></canvas>
+
   <div class="container">
 
     <!-- HERO -->
     <section class="hero">
       <div class="avatar">
-        <img src="assets/profile.png" alt="Bikash Maity Profile Picture">
+        <!-- Using a placeholder as the original asset was missing -->
+        <img src="https://ui-avatars.com/api/?name=Bikash+Maity&background=38bdf8&color=fff&size=256" alt="Bikash Maity Profile Picture">
       </div>
 
       <h1>Bikash Maity</h1>
-      <div class="subtitle">Developer • Automation • Telegram Bots</div>
+      <div class="subtitle">
+        <span id="typing-text"></span><span class="cursor">|</span>
+      </div>
     </section>
 
     <!-- CONTENT -->
     <section class="grid">
 
-      <div class="card">
+      <div class="card fade-in">
         <h2>About Me</h2>
         <p>
           I build reliable automation tools with a strong focus on Telegram bots,
@@ -164,14 +38,14 @@
         </p>
       </div>
 
-      <div class="card">
+      <div class="card fade-in">
         <h2>Skills</h2>
         <p>
           Python, Pyrogram, Telethon, Docker, Linux, Git, VPS Deployment
         </p>
       </div>
 
-      <div class="card">
+      <div class="card fade-in">
         <h2>Projects</h2>
         <ul>
           <li>Telegram Automation & Moderation Bots</li>
@@ -180,7 +54,7 @@
         </ul>
       </div>
 
-      <div class="card contact">
+      <div class="card contact fade-in">
         <h2>Contact</h2>
         <p>
           GitHub:<br>
@@ -203,5 +77,7 @@
     </footer>
 
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
