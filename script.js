@@ -204,23 +204,38 @@ function initTilt() {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach(card => {
+    let ticking = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    let rafId = null;
+
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
-      // Set CSS variables for glow effect
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+      if (!ticking) {
+        rafId = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = mouseX - rect.left;
+          const y = mouseY - rect.top;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+          // Set CSS variables for glow effect
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
 
-      // Reduced rotation intensity for better UX with glassmorphism
-      const rotateX = ((y - centerY) / centerY) * -4;
-      const rotateY = ((x - centerX) / centerX) * 4;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          // Reduced rotation intensity for better UX with glassmorphism
+          const rotateX = ((y - centerY) / centerY) * -4;
+          const rotateY = ((x - centerX) / centerX) * 4;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
 
     card.addEventListener('mouseenter', () => {
@@ -229,6 +244,11 @@ function initTilt() {
     });
 
     card.addEventListener('mouseleave', () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        ticking = false;
+      }
+
       // Restore transition to smooth return
       card.style.transition = 'transform 0.5s ease';
       card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
