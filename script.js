@@ -1,13 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Portfolio initialized');
-  initParticles();
-  initTyping();
-  initScrollAnimations();
-  initTilt();
-  initTheme();
-  initMobileMenu();
-  initYear();
-});
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('Portfolio initialized');
+    initParticles();
+    initTyping();
+    initScrollAnimations();
+    initTilt();
+    initTheme();
+    initMobileMenu();
+    initYear();
+  });
+}
 
 /* -----------------------------------------------------------
    PARTICLE BACKGROUND
@@ -318,4 +320,8 @@ function initYear() {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { initYear };
 }
