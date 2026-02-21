@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Portfolio initialized');
   initParticles();
   initTyping();
   initScrollAnimations();
