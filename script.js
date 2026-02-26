@@ -146,10 +146,10 @@ function initParticles() {
    TYPING EFFECT
 ----------------------------------------------------------- */
 function initTyping() {
-  const text = "Developer • Automation • Telegram Bots";
   const element = document.getElementById('typing-text');
   if (!element) return;
 
+  const text = element.getAttribute('data-text') || "";
   let index = 0;
 
   function type() {
