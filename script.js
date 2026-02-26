@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initMobileMenu();
   initYear();
+  initEmailProtection();
 });
 
 /* -----------------------------------------------------------
@@ -337,4 +338,32 @@ function initYear() {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+}
+
+/* -----------------------------------------------------------
+   EMAIL PROTECTION
+----------------------------------------------------------- */
+function initEmailProtection() {
+  const emailLink = document.getElementById('mail-button');
+  if (!emailLink) return;
+
+  const user = 'maitybikash565';
+  const domain = 'gmail.com';
+
+  // Construct the email only when needed
+  const email = user + '@' + domain;
+
+  emailLink.addEventListener('click', (e) => {
+    // If href is still '#', prevent default and open mailto
+    if (emailLink.getAttribute('href') === '#') {
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+    }
+  });
+
+  // Set href on hover to improve UX (user sees mailto in status bar)
+  // This is a trade-off: bots that hover might see it, but it's less likely than scraping static HTML.
+  emailLink.addEventListener('mouseenter', () => {
+    emailLink.setAttribute('href', 'mailto:' + email);
+  });
 }
