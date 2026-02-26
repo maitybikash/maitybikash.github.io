@@ -3,13 +3,14 @@
   --card: #020617;
   /* Glassmorphism backgrounds */
   --card-bg: rgba(13, 20, 39, 0.3);
-  --card-border: rgba(56, 189, 248, 0.15);
-  --card-border-hover: rgba(56, 189, 248, 0.4);
-  --accent: #38bdf8; /* Sky 400 */
-  --accent-transparent: rgba(56, 189, 248, 0.1);
-  --accent-glow: rgba(56, 189, 248, 0.2);
-  --avatar-shadow: rgba(56, 189, 248, 0.4);
-  --avatar-shadow-hover: rgba(56, 189, 248, 0.6);
+  --accent-rgb: 56, 189, 248;
+  --card-border: rgba(var(--accent-rgb), 0.15);
+  --card-border-hover: rgba(var(--accent-rgb), 0.4);
+  --accent: rgb(var(--accent-rgb)); /* Sky 400 */
+  --accent-transparent: rgba(var(--accent-rgb), 0.1);
+  --accent-glow: rgba(var(--accent-rgb), 0.2);
+  --avatar-shadow: rgba(var(--accent-rgb), 0.4);
+  --avatar-shadow-hover: rgba(var(--accent-rgb), 0.6);
   --text: #e5e7eb;
   --muted: #94a3b8;
   --bg-gradient: radial-gradient(circle at top, #1e293b, #020617);
@@ -21,13 +22,8 @@
   --bg: #e7ecf3;
   --card: #ffffff;
   --card-bg: rgba(255, 255, 255, 0.65);
-  --card-border: rgba(2, 132, 199, 0.15);
-  --card-border-hover: rgba(2, 132, 199, 0.4);
-  --accent: #0284c7; /* Sky 600 */
-  --accent-transparent: rgba(2, 132, 199, 0.1);
-  --accent-glow: rgba(2, 132, 199, 0.2);
-  --avatar-shadow: rgba(2, 132, 199, 0.4);
-  --avatar-shadow-hover: rgba(2, 132, 199, 0.6);
+  --accent-rgb: 2, 132, 199; /* Sky 600 */
+  /* Other accent-based variables inherit from :root using the new RGB value */
   --text: #0f172a;
   --muted: #475569;
   --bg-gradient: radial-gradient(circle at top, #e0f2fe, #e7ecf3);

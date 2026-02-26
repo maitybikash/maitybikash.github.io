@@ -1,12 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme(); // Initialize theme first to ensure correct colors
   initParticles();
   initTyping();
   initScrollAnimations();
   initTilt();
-  initTheme();
   initMobileMenu();
   initYear();
+  initEmailProtection();
 });
+
+/* -----------------------------------------------------------
+   UTILITIES
+----------------------------------------------------------- */
+function debounce(func, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
 /* -----------------------------------------------------------
    PARTICLE BACKGROUND
@@ -65,8 +77,26 @@ function initParticles() {
 
   // Configuration
   const particleCount = 60; // Number of particles
+  const mobileParticleCount = 30; // Number of particles on mobile
+  const mobileBreakpoint = 600; // Screen width breakpoint for mobile
   const connectionDistance = 150; // Max distance to draw line
   const mouseDistance = 200; // Interaction radius
+
+  // Dynamic Accent Color
+  let accentColor = '56, 189, 248'; // Default Sky 400
+
+  const updateAccentColor = () => {
+    const style = getComputedStyle(document.documentElement);
+    const color = style.getPropertyValue('--accent-rgb');
+    if (color) accentColor = color.trim();
+  };
+
+  // Initial fetch
+  updateAccentColor();
+
+  // Listen for theme changes
+  const observer = new MutationObserver(updateAccentColor);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   // Mouse position
   let mouse = { x: null, y: null };
@@ -87,17 +117,17 @@ function initParticles() {
     height = canvas.height = window.innerHeight;
   }
 
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', debounce(() => {
     resize();
     initParticleArray();
-  });
+  }, 200));
 
   resize();
 
   function initParticleArray() {
     particles = [];
     // Adjust count based on screen size
-    const count = window.innerWidth < 600 ? 30 : particleCount;
+    const count = window.innerWidth < mobileBreakpoint ? mobileParticleCount : particleCount;
     for (let i = 0; i < count; i++) {
       particles.push(new Particle(width, height));
     }
@@ -127,7 +157,7 @@ function initParticles() {
 
         if (distance < connectionDistance) {
           let opacityValue = 1 - (distance / connectionDistance);
-          ctx.strokeStyle = 'rgba(56, 189, 248,' + opacityValue * 0.2 + ')';
+          ctx.strokeStyle = `rgba(${accentColor}, ${opacityValue * 0.2})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);
@@ -146,10 +176,10 @@ function initParticles() {
    TYPING EFFECT
 ----------------------------------------------------------- */
 function initTyping() {
-  const text = "Developer • Automation • Telegram Bots";
   const element = document.getElementById('typing-text');
   if (!element) return;
 
+  const text = element.getAttribute('data-text') || "";
   let index = 0;
 
   function type() {
@@ -337,4 +367,32 @@ function initYear() {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+}
+
+/* -----------------------------------------------------------
+   EMAIL PROTECTION
+----------------------------------------------------------- */
+function initEmailProtection() {
+  const emailLink = document.getElementById('mail-button');
+  if (!emailLink) return;
+
+  const user = 'maitybikash565';
+  const domain = 'gmail.com';
+
+  // Construct the email only when needed
+  const email = user + '@' + domain;
+
+  emailLink.addEventListener('click', (e) => {
+    // If href is still '#', prevent default and open mailto
+    if (emailLink.getAttribute('href') === '#') {
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+    }
+  });
+
+  // Set href on hover to improve UX (user sees mailto in status bar)
+  // This is a trade-off: bots that hover might see it, but it's less likely than scraping static HTML.
+  emailLink.addEventListener('mouseenter', () => {
+    emailLink.setAttribute('href', 'mailto:' + email);
+  });
 }
