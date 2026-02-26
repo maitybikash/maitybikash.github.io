@@ -21,6 +21,8 @@ function initParticles() {
 
   // Configuration
   const particleCount = 60; // Number of particles
+  const mobileParticleCount = 30; // Number of particles on mobile
+  const mobileBreakpoint = 600; // Screen width breakpoint for mobile
   const connectionDistance = 150; // Max distance to draw line
   const mouseDistance = 200; // Interaction radius
 
@@ -97,7 +99,7 @@ function initParticles() {
   function initParticleArray() {
     particles = [];
     // Adjust count based on screen size
-    const count = window.innerWidth < 600 ? 30 : particleCount;
+    const count = window.innerWidth < mobileBreakpoint ? mobileParticleCount : particleCount;
     for (let i = 0; i < count; i++) {
       particles.push(new Particle());
     }
