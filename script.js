@@ -11,6 +11,50 @@ document.addEventListener('DOMContentLoaded', () => {
 /* -----------------------------------------------------------
    PARTICLE BACKGROUND
 ----------------------------------------------------------- */
+class Particle {
+  constructor(width, height) {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 1.5; // Velocity X
+    this.vy = (Math.random() - 0.5) * 1.5; // Velocity Y
+    this.size = Math.random() * 2 + 1;
+    this.color = 'rgba(56, 189, 248, '; // Using accent color base (Sky 400)
+  }
+
+  update(width, height, mouse, mouseDistance) {
+    // Move
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce off edges
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+
+    // Mouse interaction
+    if (mouse.x != null) {
+      let dx = mouse.x - this.x;
+      let dy = mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < mouseDistance) {
+        const forceDirectionX = dx / distance;
+        const forceDirectionY = dy / distance;
+        const force = (mouseDistance - distance) / mouseDistance;
+        const directionX = forceDirectionX * force * 3;
+        const directionY = forceDirectionY * force * 3;
+        this.vx -= directionX * 0.05; // Gentle push away
+        this.vy -= directionY * 0.05;
+      }
+    }
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color + '0.5)';
+    ctx.fill();
+  }
+}
+
 function initParticles() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
@@ -50,56 +94,12 @@ function initParticles() {
 
   resize();
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 1.5; // Velocity X
-      this.vy = (Math.random() - 0.5) * 1.5; // Velocity Y
-      this.size = Math.random() * 2 + 1;
-      this.color = 'rgba(56, 189, 248, '; // Using accent color base (Sky 400)
-    }
-
-    update() {
-      // Move
-      this.x += this.vx;
-      this.y += this.vy;
-
-      // Bounce off edges
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-
-      // Mouse interaction
-      if (mouse.x != null) {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < mouseDistance) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
-          const force = (mouseDistance - distance) / mouseDistance;
-          const directionX = forceDirectionX * force * 3;
-          const directionY = forceDirectionY * force * 3;
-          this.vx -= directionX * 0.05; // Gentle push away
-          this.vy -= directionY * 0.05;
-        }
-      }
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color + '0.5)';
-      ctx.fill();
-    }
-  }
-
   function initParticleArray() {
     particles = [];
     // Adjust count based on screen size
     const count = window.innerWidth < 600 ? 30 : particleCount;
     for (let i = 0; i < count; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(width, height));
     }
   }
 
@@ -108,8 +108,8 @@ function initParticles() {
 
     // Update and draw particles
     for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
+      particles[i].update(width, height, mouse, mouseDistance);
+      particles[i].draw(ctx);
     }
 
     // Draw connections
