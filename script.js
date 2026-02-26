@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* -----------------------------------------------------------
+   UTILITIES
+----------------------------------------------------------- */
+function debounce(func, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+/* -----------------------------------------------------------
    PARTICLE BACKGROUND
 ----------------------------------------------------------- */
 function initParticles() {
@@ -43,10 +54,10 @@ function initParticles() {
     height = canvas.height = window.innerHeight;
   }
 
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', debounce(() => {
     resize();
     initParticleArray();
-  });
+  }, 200));
 
   resize();
 
