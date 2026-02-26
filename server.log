@@ -1,0 +1,9 @@
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/fonts/fonts.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/profile.png HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/fonts/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/fonts/pxiEyp8kv8JHgFVrJJfecg.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/fonts/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Feb/2026 08:15:11] "GET /assets/fonts/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2 HTTP/1.1" 200 -
